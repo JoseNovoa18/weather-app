@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>App del Clima</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="container">
+    <h1>🌤 App del Clima</h1>
+
+    <form method="POST">
+        <input type="text" name="city" placeholder="Ingresa una ciudad" required>
+        <button type="submit">Buscar</button>
+    </form>
+
+    {% if error %}
+        <p class="error">❌ {{ error }}</p>
+    {% endif %}
+
+    {% if weather %}
+        <div class="card">
+            <h2>{{ weather.city }}, {{ weather.country }}</h2>
+            <p>🌡 Temperatura: {{ weather.temperature }} °C</p>
+            <p>💨 Viento: {{ weather.windspeed }} km/h</p>
+            <p>🧭 Dirección: {{ weather.winddirection }}°</p>
+        </div>
+    {% endif %}
+</div>
+
+</body>
+</html>
